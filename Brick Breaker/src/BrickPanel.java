@@ -88,9 +88,9 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
         int x = e.getX();
 
         movePlatform.setxPos(x);
-        if (movePlatform.getxPos() >= 350) {
-            movePlatform.setxPos(350);
-        } else
+        if (movePlatform.getxPos() + movePlatform.getWidth() >= 500)
+            movePlatform.setxPos(500-movePlatform.getWidth());
+        else
             movePlatform.setxPos(x);
 
         super.repaint();
