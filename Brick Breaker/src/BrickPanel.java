@@ -60,8 +60,8 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
             graphics.setFont(new Font("serif",Font.BOLD,25));
             graphics.drawString("Bravo!You Won!",170,300);
 
-//            graphics.setFont(new Font("serif",Font.BOLD,22));
-//            graphics.drawString("Press Enter to play again!",120,380);
+            graphics.setFont(new Font("serif",Font.BOLD,22));
+            graphics.drawString("Press Enter to play again!",120,380);
         }
 
         //ball fall
@@ -101,6 +101,7 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
     public void actionPerformed(ActionEvent e) {
 
     timer.start();
+
     if(play) {
 
     int x = ball.getxPos();
