@@ -8,6 +8,8 @@ public class Ball extends JComponent {
      private int width=30;
      private int height=30;
 
+    private double ballSpeed=2.5;
+
 
 
     public void paintComponent(Graphics g){
@@ -50,6 +52,14 @@ public class Ball extends JComponent {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public double getBallSpeed() {
+        return ballSpeed;
+    }
+
+    public void setBallSpeed(double ballSpeed) {
+        this.ballSpeed = ballSpeed;
     }
 
 }

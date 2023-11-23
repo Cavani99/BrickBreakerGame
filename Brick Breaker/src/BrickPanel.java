@@ -15,7 +15,6 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
 
     private boolean play=false;
     private boolean start=false;
-    private int ballSpeed=3;
 
     private final Timer timer;
     private BricksMap map;
@@ -45,7 +44,7 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
         map.draw((Graphics2D)graphics);
 
         //to start
-        if(!play  && ball.getyPos()<movePlatform.getyPos()){
+        if(!play  && ball.getyPos()<movePlatform.getyPos() && totalBricks>0){
             start=true;
             graphics.setColor(Color.RED);
             graphics.setFont(new Font("serif",Font.BOLD,30));
@@ -88,8 +87,8 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
         int x = e.getX();
 
         movePlatform.setxPos(x);
-        if (movePlatform.getxPos() + movePlatform.getWidth() >= 500)
-            movePlatform.setxPos(500-movePlatform.getWidth());
+        if (movePlatform.getxPos() + movePlatform.getWidth() >= panelWidth)
+            movePlatform.setxPos(panelWidth-movePlatform.getWidth());
         else
             movePlatform.setxPos(x);
 
@@ -159,8 +158,8 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
         A:for(int i=0;i<map.map.length;i++){
             for(int j=0;j<map.map[0].length;j++){
                 if(map.map[i][j]>0){
-                    int brickX=j*map.brickWidth+80;
-                    int brickY=i*map.brickHeight+50;
+                    int brickX=j*map.brickWidth+map.getxSpace();
+                    int brickY=i*map.brickHeight+map.getySpace();
                     int brickWidth=map.brickWidth;
                     int brickHeight=map.brickHeight;
 
@@ -172,9 +171,9 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
                         totalBricks--;
 
                         movePlatform.setWidth(wPlatform-4);
-                        if(totalBricks<20 && totalBricks>=10) ballSpeed=4;
-                        else if(totalBricks<10 && totalBricks>=5) ballSpeed=6;
-                        else if(totalBricks<5) ballSpeed=12;
+                        if(totalBricks<20 && totalBricks>=10)ball.setBallSpeed(4);
+                        else if(totalBricks<10 && totalBricks>=5) ball.setBallSpeed(6);
+                        else if(totalBricks<5) ball.setBallSpeed(12);
 
 
                         if(x+w-1 <= rect.x || x+1>=rect.x+rect.width){
@@ -185,16 +184,14 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
                         break A;
                     }
                 }
-
-
             }
         }
 
     if (move_left && !move_mid) {
-        x -= ballSpeed;
+        x -= ball.getBallSpeed();
         ball.setxPos(x);
     } else if (!move_left && !move_mid) {
-        x += ballSpeed;
+        x += ball.getBallSpeed();
         ball.setxPos(x);
     }
     if(move_mid){
@@ -204,10 +201,10 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
 
 
     if (move_up) {
-        y -= ballSpeed;
+        y -= ball.getBallSpeed();
         ball.setyPos(y);
     } else {
-        y += ballSpeed;
+        y += ball.getBallSpeed();
         ball.setyPos(y);
     }
 
@@ -234,7 +231,7 @@ public class BrickPanel extends JPanel implements ActionListener,MouseMotionList
                 ball.setyPos(250);
                 ball.setWidth(30);
                 ball.setHeight(30);
-                ballSpeed=2;
+                ball.setBallSpeed(2.5);
                 movePlatform.setxPos(170);
                 movePlatform.setyPos(450);
                 movePlatform.setWidth(150);

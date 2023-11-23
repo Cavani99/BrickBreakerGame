@@ -55,6 +55,81 @@ explain the classes for the ball,platform and the map.
 ---
 ## Ball class
 
+In this class we simply hold the size of the ball,the ball speed(with getters and setters) and paint method
+for the graphics.
+
+![img_5.png](img_5.png)
+
+---
+## MovingPlatform class
+
+The same can be said about the platform,only difference is the
+platform is a rectangle and the ball,an oval(obviously).
+
+![img_6.png](img_6.png)
+
+---
+## BricksMap class
+
+Here we make a map for the bricks you need to break with the ball.
+The size of the map is based on the amount of rows and columns that 
+the object is initialised with.Each brick is a rectangle with given
+width and height,and initially holds a value of <b>1</b> and when it is 
+hit its value equals 0 and is not drawn/painted anymore(its made invisible).
+
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
+
+
+In the <b>setBrickValue</b> method we change the value of the given brick(mainly to 0).
+
+---
+## actionPerformed/BrickPanel
+
+In this method we apply the movement of the ball and if it
+intersects with the Platform,the Panel`s borders or any of
+the bricks.That's what we use the booleans <b>move_left,move_mid and move_up</b>
+for.I use the **division** variable to divide the platform in 3 parts,if
+the ball hits the left,mid or right part it moves in the logical direction.
+
+![img_9.png](img_9.png)
+
+I use a double **for** loop to look if the ball makes a contact with
+any brick and if the brick's value is more than **0**(it's not touched yet)
+,the value of the brick is set to **0** and the **totalBricks** value(which holds the value of 
+currently alive bricks)is decreased. I also decrease the width of the platform 
+for a bigger difficulty and given the amount of bricks left, the speed of the ball is 
+also increased(with the maximum speed being **12**).The idea was to make it really hard to win
+,and in that way,make it more fulfilling when you do.
+
+![img_10.png](img_10.png)
+At the end of the method,we move the ball depending on the boolean 
+values, and if the ball's coordinates are lower than the platform(or higher 
+if we look at it from a different perspective)the game is stopped. 
+
+![img_11.png](img_11.png)
+
+---
+### Game Over Screen
+
+![img_12.png](img_12.png)
+
+### Win Screen
+
+![img_13.png](img_13.png)
+
+---
+## Ideas for Future upgrades
+
+- Add levels
+-  Add perks (when a brick is destroyed there will be a chance
+for a random perk to fall,it could be more balls,bigger platform ,bigger ball ,etc).
+-  Lives
+- Sound
+- More fair difficulty
+
+
+
 
 
 

@@ -8,6 +8,10 @@ public class MovingPlatform  {
     private int width=150;
     private int height=13;
 
+    public void paintPlatform(Graphics g){
+        g.setColor(Color.white);
+        g.fillRoundRect(xPos,yPos,width,height,5,5);
+    }
 
     public int getxPos() {
         return xPos;
@@ -36,12 +40,6 @@ public class MovingPlatform  {
     public int getHeight() {
         return height;
     }
-
-    public void paintPlatform(Graphics g){
-        g.setColor(Color.white);
-        g.fillRoundRect(xPos,yPos,width,height,5,5);
-    }
-
 
 }
 
